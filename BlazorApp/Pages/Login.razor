@@ -1,5 +1,6 @@
 ﻿@page "/login"
 @using BlazorApp.Data;
+@using BlazorApp.Resources
 @using BlazorApp.Validations;
 @using System.Text.RegularExpressions;
 @inject NavigationManager Nav
@@ -30,23 +31,21 @@
 </div>
 
 @code {
-  private User user = new User();
+  private User user = new User
+    {
+      Email = string.Empty,
+      Password = string.Empty,
+      UserName=string.Empty
+    };
   private Popup popupRef;
 
   public async Task LoginAsync()
   {
-    //var loginValidator = new LoginValidatior().Validate(user);
-    // if (!loginValidator.IsValid)
-    // {
-    //   popupRef.Show(string.Join(",", loginValidator.Errors));
-    //   return;
-    // }
-
     try
     {
       if (!IsValid())
       {
-        popupRef.Show("Please enter valid credentials.", "Error");
+        popupRef.Show(Messages.LoginError);
         return;
       }
 
@@ -61,6 +60,6 @@
 
   private bool IsValid() => !string.IsNullOrEmpty(user.Email) &&
   !string.IsNullOrEmpty(user.Password) &&
-  Regex.IsMatch(user.Email, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
+  Regex.IsMatch(user.Email, Constants.EmailRegex, RegexOptions.IgnoreCase);
 
 }

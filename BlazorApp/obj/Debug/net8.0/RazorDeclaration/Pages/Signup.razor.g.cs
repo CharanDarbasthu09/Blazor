@@ -13,85 +13,92 @@ namespace BlazorApp.Pages
     using global::System.Threading.Tasks;
     using global::Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "C:\Users\charan.darbasthu\source\BlazorApp\BlazorApp\_Imports.razor"
+#line 1 "C:\Users\charan.darbasthu\Source\Repos\Blazor\BlazorApp\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\charan.darbasthu\source\BlazorApp\BlazorApp\_Imports.razor"
+#line 2 "C:\Users\charan.darbasthu\Source\Repos\Blazor\BlazorApp\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\charan.darbasthu\source\BlazorApp\BlazorApp\_Imports.razor"
+#line 3 "C:\Users\charan.darbasthu\Source\Repos\Blazor\BlazorApp\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\charan.darbasthu\source\BlazorApp\BlazorApp\_Imports.razor"
+#line 4 "C:\Users\charan.darbasthu\Source\Repos\Blazor\BlazorApp\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\charan.darbasthu\source\BlazorApp\BlazorApp\_Imports.razor"
+#line 5 "C:\Users\charan.darbasthu\Source\Repos\Blazor\BlazorApp\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\charan.darbasthu\source\BlazorApp\BlazorApp\_Imports.razor"
+#line 6 "C:\Users\charan.darbasthu\Source\Repos\Blazor\BlazorApp\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\Users\charan.darbasthu\source\BlazorApp\BlazorApp\_Imports.razor"
+#line 7 "C:\Users\charan.darbasthu\Source\Repos\Blazor\BlazorApp\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\Users\charan.darbasthu\source\BlazorApp\BlazorApp\_Imports.razor"
+#line 8 "C:\Users\charan.darbasthu\Source\Repos\Blazor\BlazorApp\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\Users\charan.darbasthu\source\BlazorApp\BlazorApp\_Imports.razor"
+#line 9 "C:\Users\charan.darbasthu\Source\Repos\Blazor\BlazorApp\_Imports.razor"
 using BlazorApp;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "C:\Users\charan.darbasthu\source\BlazorApp\BlazorApp\_Imports.razor"
+#line 10 "C:\Users\charan.darbasthu\Source\Repos\Blazor\BlazorApp\_Imports.razor"
 using BlazorApp.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\charan.darbasthu\source\BlazorApp\BlazorApp\Pages\Signup.razor"
+#line 2 "C:\Users\charan.darbasthu\Source\Repos\Blazor\BlazorApp\Pages\Signup.razor"
 using BlazorApp.Data;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\charan.darbasthu\source\BlazorApp\BlazorApp\Pages\Signup.razor"
+#line 3 "C:\Users\charan.darbasthu\Source\Repos\Blazor\BlazorApp\Pages\Signup.razor"
 using System.Text.RegularExpressions;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "C:\Users\charan.darbasthu\Source\Repos\Blazor\BlazorApp\Pages\Signup.razor"
+using BlazorApp.Resources;
 
 #line default
 #line hidden
@@ -105,23 +112,16 @@ using System.Text.RegularExpressions;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 39 "C:\Users\charan.darbasthu\source\BlazorApp\BlazorApp\Pages\Signup.razor"
+#line 40 "C:\Users\charan.darbasthu\Source\Repos\Blazor\BlazorApp\Pages\Signup.razor"
        
   private User user = new User();
   private Popup popupRef;
 
   public async Task SignUpAsync()
   {
-    //var loginValidator = new LoginValidatior().Validate(user);
-    // if (!loginValidator.IsValid)
-    // {
-    //   popupRef.Show(string.Join(",", loginValidator.Errors));
-    //   return;
-    // }
-
     if (!IsValid())
     {
-      popupRef.Show("Please enter valid credentials.", "Error");
+      popupRef.Show(Messages.SignupError);
       return;
     }
 

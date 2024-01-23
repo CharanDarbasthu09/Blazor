@@ -42,13 +42,9 @@ namespace BlazorApp.Utilities
     public Task<string[]> GetStringArrayAsync(string key);
   }
 
-  public class LocalStorage : ILocalStorage
+  public class LocalStorage(IJSRuntime jSRuntime) : ILocalStorage
   {
-    private readonly IJSRuntime jsruntime;
-    public LocalStorage(IJSRuntime jSRuntime)
-    {
-      jsruntime = jSRuntime;
-    }
+    private readonly IJSRuntime jsruntime = jSRuntime;
 
     public async Task RemoveAsync(string key)
     {
@@ -65,7 +61,9 @@ namespace BlazorApp.Utilities
     {
       var str = await jsruntime.InvokeAsync<string>("localStorage.getItem", key).ConfigureAwait(false);
       if (str == null)
+#pragma warning disable CS8603 // Possible null reference return.
         return null;
+#pragma warning restore CS8603 // Possible null reference return.
       var bytes = await Compressor.DecompressBytesAsync(Convert.FromBase64String(str));
       return Encoding.UTF8.GetString(bytes);
     }
@@ -80,7 +78,9 @@ namespace BlazorApp.Utilities
       var data = await GetStringAsync(key);
       if (!string.IsNullOrEmpty(data))
         return data.Split('\0');
+#pragma warning disable CS8603 // Possible null reference return.
       return null;
+#pragma warning restore CS8603 // Possible null reference return.
     }
   }
 
