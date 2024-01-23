@@ -1,14 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Ica2y/dsppRerS6nGYrK2fqzg/5BXadkifBv4fxZAmMF+u5TrPOMuQrMtrAXy+ksG3/mW0srAQQ/WqAltfcqdQ==",
+  "dgSpecHash": "Yibo4Q/rX4nlz0Z3OJ8ggcJe946FTAeLUrwxsVKw/Oef5sGf4s4+D4trC4otgcHU8OCDb3oXXH9aSo7hhtgw3g==",
   "success": true,
   "projectFilePath": "C:\\Users\\charan.darbasthu\\source\\BlazorApp\\BlazorApp\\BlazorApp.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\charan.darbasthu\\.nuget\\packages\\fluentvalidation\\11.9.0\\fluentvalidation.11.9.0.nupkg.sha512",
-    "C:\\Users\\charan.darbasthu\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.23\\microsoft.windowsdesktop.app.ref.6.0.23.nupkg.sha512",
-    "C:\\Users\\charan.darbasthu\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.23\\microsoft.netcore.app.ref.6.0.23.nupkg.sha512",
-    "C:\\Users\\charan.darbasthu\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.23\\microsoft.aspnetcore.app.ref.6.0.23.nupkg.sha512",
-    "C:\\Users\\charan.darbasthu\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.23\\microsoft.netcore.app.host.win-x64.6.0.23.nupkg.sha512"
+    "C:\\Users\\charan.darbasthu\\.nuget\\packages\\fluentvalidation\\11.9.0\\fluentvalidation.11.9.0.nupkg.sha512"
   ],
   "logs": []
 }
