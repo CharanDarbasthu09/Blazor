@@ -6,3 +6,7 @@
 /.vs/BlazorApp/v17/.suo
 /.vs/BlazorApp/FileContentIndex/a076d21c-b8b1-4418-818b-b0e29f0a6f59.vsidx
 /.vs/BlazorApp/FileContentIndex
+/BlazorTests/obj/Debug/net8.0/BlazorTests.csproj.BuildWithSkipAnalyzers
+/.vs/BlazorApp/v17/TestStore/0/000.testlog
+/BlazorApp/obj/Debug/net8.0/BlazorApp.csproj.BuildWithSkipAnalyzers
+/.vs/BlazorApp/v17/TestStore/0/testlog.manifest

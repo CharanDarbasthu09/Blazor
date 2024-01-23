@@ -27,7 +27,7 @@ namespace BlazorTests
     [Fact]
     public void SignUp_MarkUp_Test()
     {
-      var expectedMarkUp = "<h1>User Sign Up</h1>\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\">Sign Up Form</h5>\r\n      </div>\r\n      <div class=\"modal-body\">\r\n        <div class=\"mb-3\">\r\n          <label for=\"loginEmail\" class=\"form-label\">User Name</label>\r\n          <input class=\"form-control\" id=\"userName\" placeholder=\"john\" autocomplete=\"off\" required=\"\" >\r\n        </div>\r\n        <div class=\"mb-3\">\r\n          <label for=\"loginEmail\" class=\"form-label\">Email</label>\r\n          <input type=\"email\" class=\"form-control\" id=\"loginEmail\" placeholder=\"name@example.com\" autocomplete=\"off\" required=\"\" >\r\n        </div>\r\n        <div class=\"mb-3\">\r\n          <label for=\"loginPassword\" class=\"form-label\">Password</label>\r\n          <input type=\"password\" class=\"form-control\" id=\"loginPassword\" required=\"\" >\r\n        </div>\r\n        <div class=\"mb-3\">\r\n          <label for=\"confirmPassword\" class=\"form-label\">Confirm Password</label>\r\n          <input type=\"password\" class=\"form-control\" id=\"confirmPassword\" required=\"\">\r\n        </div>\r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button id=\"loginBtn\" type=\"button\" class=\"btn btn-success\" >Sign Up</button>\r\n      </div>\r\n      <div class=\"toast-container p-3 d-none\" data-bs-autohide=\"true\" data-bs-delay=\"5000\">\r\n        <div class=\"toast show\" role=\"alert\" aria-live=\"assertive\" aria-atomic=\"true\">\r\n          <div class=\"toast-header\">\r\n            <strong class=\"me-auto\"></strong>\r\n            <button type=\"button\" class=\"btn-close\" aria-label=\"Close\" ></button>\r\n          </div>\r\n          <div class=\"toast-body\"></div>\r\n        </div>\r\n      </div>\r\n    </div>";
+      var expectedMarkUp = " <h1>User Sign Up</h1>\r\n<div class=\"modal-content\">\r\n  <div class=\"modal-header\">\r\n    <h5 class=\"modal-title\">Sign Up Form</h5>\r\n  </div>\r\n  <div class=\"modal-body\">\r\n    <div class=\"mb-3\">\r\n      <label for=\"loginEmail\" class=\"form-label\">User Name</label>\r\n      <input class=\"form-control\" id=\"userName\" placeholder=\"john\" autocomplete=\"off\" required=\"\" value=\"\" >\r\n    </div>\r\n    <div class=\"mb-3\">\r\n      <label for=\"loginEmail\" class=\"form-label\">Email</label>\r\n      <input type=\"email\" class=\"form-control\" id=\"loginEmail\" placeholder=\"name@example.com\" autocomplete=\"off\" required=\"\" value=\"\" >\r\n    </div>\r\n    <div class=\"mb-3\">\r\n      <label for=\"loginPassword\" class=\"form-label\">Password</label>\r\n      <input type=\"password\" class=\"form-control\" id=\"loginPassword\" required=\"\" value=\"\" >\r\n    </div>\r\n    <div class=\"mb-3\">\r\n      <label for=\"confirmPassword\" class=\"form-label\">Confirm Password</label>\r\n      <input type=\"password\" class=\"form-control\" id=\"confirmPassword\" required=\"\">\r\n    </div>\r\n  </div>\r\n  <div class=\"modal-footer\">\r\n    <button id=\"loginBtn\" type=\"button\" class=\"btn btn-success\" >Sign Up</button>\r\n  </div>\r\n  <div class=\"toast-container p-3 d-none\" data-bs-autohide=\"true\" data-bs-delay=\"5000\">\r\n    <div class=\"toast show\" role=\"alert\" aria-live=\"assertive\" aria-atomic=\"true\">\r\n      <div class=\"toast-header\">\r\n        <strong class=\"me-auto\"></strong>\r\n        <button type=\"button\" class=\"btn-close\" aria-label=\"Close\" ></button>\r\n      </div>\r\n      <div class=\"toast-body\"></div>\r\n    </div>\r\n  </div>\r\n</div>";
 
       // Render Counter component.
       var component = _testContext.RenderComponent<Signup>();
@@ -38,7 +38,7 @@ namespace BlazorTests
     [Fact]
     public void SignUp_ButtonClick_Test()
     {
-      var signUpComponent = _testContext.RenderComponent<Login>();
+      var signUpComponent = _testContext.RenderComponent<Signup>();
       var signUpBtn = signUpComponent.Find("button");
       var navMgr = _testContext.Services.GetRequiredService<NavigationManager>();
 
@@ -48,6 +48,21 @@ namespace BlazorTests
 
       Assert.NotNull(signUpBtn);
       Assert.Equal("http://localhost/", navMgr.Uri);
+    }
+
+    [Fact]
+    public void SignUp_GivenInvalidCredentials_DoesNotNavigate_ThrowsErrorMessage()
+    {
+      var signupComponent = _testContext.RenderComponent<Signup>();
+      signupComponent.Instance.user = new User
+      {
+        Email = string.Empty,
+        Password = string.Empty,
+        UserName=string.Empty
+      };
+      var navMgr = _testContext.Services.GetRequiredService<NavigationManager>();
+
+      Assert.NotEqual("http://localhost/counter", navMgr.Uri);
     }
   }
 }

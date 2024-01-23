@@ -31,7 +31,7 @@
 </div>
 
 @code {
-  private User user = new User
+  public User user = new User
     {
       Email = string.Empty,
       Password = string.Empty,
@@ -45,11 +45,11 @@
     {
       if (!IsValid())
       {
-        popupRef.Show(Messages.LoginError);
+        await InvokeAsync(() => popupRef.Show(Messages.LoginError));
         return;
       }
 
-      Nav.NavigateTo("/users");
+      Nav.NavigateTo("/counter");
       await LocalStorage.SaveStringAsync("user", user.Email);
     }
     catch (Exception ex)
