@@ -9,6 +9,9 @@
 <PageTitle>User Login</PageTitle>
 
 <h1>User Login</h1>
+<EditForm Model="user" OnValidSubmit="LoginAsync">
+  <FluentValidationValidator TValidator="LoginValidator" />
+  <ValidationSummary />
 <div class="modal-content">
   <div class="modal-header">
     <h5 class="modal-title">Login Form</h5>
@@ -29,6 +32,7 @@
   </div>
   <Popup @ref="popupRef" />
 </div>
+</EditForm>
 
 @code {
   public User user = new User

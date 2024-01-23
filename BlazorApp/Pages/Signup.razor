@@ -2,40 +2,46 @@
 @using BlazorApp.Data;
 @using System.Text.RegularExpressions;
 @using BlazorApp.Resources
+@using BlazorApp.Validations
 @inject NavigationManager Nav
 @inject Utilities.ILocalStorage LocalStorage
 
 <PageTitle>Sign Up</PageTitle>
 
 <h1>User Sign Up</h1>
-<div class="modal-content">
-  <div class="modal-header">
-    <h5 class="modal-title">Sign Up Form</h5>
-  </div>
-  <div class="modal-body">
-    <div class="mb-3">
-      <label for="loginEmail" class="form-label">User Name</label>
-      <input class="form-control" id="userName" placeholder="john" autocomplete="off" required @bind-value="user.UserName" />
+<EditForm Model="user" OnValidSubmit="SignUpAsync">
+  <FluentValidationValidator TValidator="SignupValidator" />
+  <ValidationSummary />
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Sign Up Form</h5>
     </div>
-    <div class="mb-3">
-      <label for="loginEmail" class="form-label">Email</label>
-      <input type="email" class="form-control" id="loginEmail" placeholder="name@example.com" autocomplete="off" required @bind-value="user.Email" />
+    <div class="modal-body">
+      <div class="mb-3">
+        <label for="loginEmail" class="form-label">User Name</label>
+        <input class="form-control" id="userName" placeholder="john" autocomplete="off" required @bind-value="user.UserName" />
+      </div>
+      <div class="mb-3">
+        <label for="loginEmail" class="form-label">Email</label>
+        <input type="email" class="form-control" id="loginEmail" placeholder="name@example.com" autocomplete="off" required @bind-value="user.Email" />
+      </div>
+      <div class="mb-3">
+        <label for="loginPassword" class="form-label">Password</label>
+        <input type="password" class="form-control" id="loginPassword" required @bind-value="user.Password" />
+      </div>
+      <div class="mb-3">
+        <label for="confirmPassword" class="form-label">Confirm Password</label>
+        <input type="password" class="form-control" id="confirmPassword" required />
+      </div>
     </div>
-    <div class="mb-3">
-      <label for="loginPassword" class="form-label">Password</label>
-      <input type="password" class="form-control" id="loginPassword" required @bind-value="user.Password" />
-    </div>
-    <div class="mb-3">
-      <label for="confirmPassword" class="form-label">Confirm Password</label>
-      <input type="password" class="form-control" id="confirmPassword" required />
-    </div>
-  </div>
 
-  <div class="modal-footer">
-    <button id="loginBtn" type="button" class="btn btn-success" @onclick="SignUpAsync">Sign Up</button>
+    <div class="modal-footer">
+      <button id="loginBtn" type="button" class="btn btn-success" @onclick="SignUpAsync">Sign Up</button>
+    </div>
+    <Popup @ref="popupRef" />
   </div>
-  <Popup @ref="popupRef" />
-</div>
+</EditForm>
+
 
 @code {
   public User user = new User
