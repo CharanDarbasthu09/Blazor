@@ -13,6 +13,7 @@
           <LastGenOutput>Messages.Designer.cs</LastGenOutput>
       </EmbeddedResource>
     <PackageReference Include="FluentValidation" Version="11.9.0" />
+    <PackageReference Include="Microsoft.IdentityModel" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>

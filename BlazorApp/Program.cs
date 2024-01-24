@@ -1,4 +1,5 @@
 using BlazorApp.Data;
+using BlazorApp.Exceptions;
 using BlazorApp.Utilities;
 
 using Microsoft.AspNetCore.Components;
@@ -11,6 +12,10 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddScoped<ILocalStorage, LocalStorage>();
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+builder.Services.AddProblemDetails();
+builder.Services.AddExceptionHandler<BadRequestExceptionHandler>();
+builder.Services.AddExceptionHandler<NotFoundExceptionHandler>();
 
 var app = builder.Build();
 
@@ -30,5 +35,9 @@ app.UseRouting();
 
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
+
+app.UseExceptionHandler();
 
 app.Run();
